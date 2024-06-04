@@ -63,3 +63,35 @@ void adicionarContato(){
     printf("Contato adicionado com sucesso!\n");
 }
 
+void listarContatos(){
+    if(numContatos == 0 ){
+        printf("Nenhum contato encontrado\n");
+        return;
+    }
+
+    for(int i = 0; i < numContatos; i++){
+        printf("Contato %d\n",i + 1);
+        printf("Nome: %s\n", contatos[i].nome);
+        printf("telefone: %s\n", contatos[i].telefone);
+        printf("email: %s\n\n", contatos[i].email);
+    }
+}
+
+void buscarContato(){
+    char nomeBusca[TAM_NOME];
+    printf("Digite o nome do contato para a busca");
+    scanf("%[^\n]s", nomeBusca);
+
+    for(int i = 0; i < numContatos; i++){
+        if(strcmp(contatos[i].nome, nomeBusca) == 0){
+            printf("Contato encontrado:\n");
+            printf("Nome: %s\n", contatos[i].nome);
+            printf("Telefone: %s\n", contatos[i].telefone);
+            printf("Email: %s\n", contatos[i].email);
+            return;
+        }
+    }
+
+    printf("contado nao encontrado\n")
+}
+
