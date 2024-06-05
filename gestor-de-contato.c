@@ -95,3 +95,21 @@ void buscarContato(){
     printf("contado nao encontrado\n")
 }
 
+void removerContato(){
+    char nomeBusca[TAM_NOME];
+    printf("Digite o nome do contato para remover:");
+    scanf("%[^\n]s", nomeBusca);
+
+    for (int i = 0; i < numContatos; i++){
+        if(strcmp(contatos[i].nome, nomeBusca) == 0){
+            for(int j = i; j < numContatos - 1; j++){
+                contatos[j] = contatos[j + 1];
+            }
+            numContatos--;
+            salvarContatos;
+            printf("contato removido\n");
+            return;
+        }
+    }
+}
+
