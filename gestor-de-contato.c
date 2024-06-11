@@ -92,7 +92,7 @@ void buscarContato(){
         }
     }
 
-    printf("contado nao encontrado\n")
+    printf("contado nao encontrado\n");
 }
 
 void removerContato(){
@@ -111,5 +111,68 @@ void removerContato(){
             return;
         }
     }
+}
+
+void atualizarContato(){
+    char nomeBusca[TAM_NOME];
+    printf("Digite o nome do contato para atualizar: ");
+    scanf("%[^\n]s", nomeBusca);
+
+    for (int i = 0; i < numContatos; i++){
+        if(strcmp(contatos[i].nome, nomeBusca) == 0){
+            printf("Digite o novo telefone: ");
+            scanf("%s", contatos[i].telefone);
+            printf("digite o novo email:");
+            scanf("%s", contatos[i].email);
+            salvarContatos();
+            printf("contato atualizado\n");
+            return;
+        }
+    }
+
+    printf("Contato nao encontrado.\n");
+}
+
+int main(){
+    carregarContatos();
+
+    int opcao;
+
+    do{
+        printf("1. Adicionar contato\n");
+        printf("2. listar contatos\n");
+        printf("3. buscar contatos\n");
+        printf("4. remover contato\n");
+        printf("5. atualizar contatos\n");
+        printf("0. sair\n");
+        printf("Escolaha uma opçao:");
+        scanf("%d", &opcao);
+
+        switch (opcao){
+        case 1:
+            adicionarContato();
+            break;
+        case 2:
+            listarContatos();
+            break;
+        case 3:
+            buscarContato();
+            break;
+        case 4:
+            removerContato();
+            break;
+        case 5:
+            atualizarContato();
+            break;
+        case 0:
+            printf("saindo...\n");
+            break;
+        default:
+            printf("opçao invalida\m");
+            break;
+        }
+    } while(opcao != 0);
+
+    return 0;
 }
 
