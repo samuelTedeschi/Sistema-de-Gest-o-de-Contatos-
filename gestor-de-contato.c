@@ -52,7 +52,7 @@ void adicionarContato(){
 
     Contato novoContato;
     printf("Digite o nome: ");
-    scanf("%[^\n]s", novoContato.nome);
+    scanf("%s", novoContato.nome);
     printf("digite o telefone: ");
     scanf("%s", novoContato.telefone);
     printf("Digite o email: ");
@@ -79,8 +79,8 @@ void listarContatos(){
 
 void buscarContato(){
     char nomeBusca[TAM_NOME];
-    printf("Digite o nome do contato para a busca");
-    scanf("%[^\n]s", nomeBusca);
+    printf("Digite o nome do contato para a busca: ");
+    scanf("%s", nomeBusca);
 
     for(int i = 0; i < numContatos; i++){
         if(strcmp(contatos[i].nome, nomeBusca) == 0){
@@ -97,8 +97,8 @@ void buscarContato(){
 
 void removerContato(){
     char nomeBusca[TAM_NOME];
-    printf("Digite o nome do contato para remover:");
-    scanf("%[^\n]s", nomeBusca);
+    printf("Digite o nome do contato para remover: ");
+    scanf("%s", nomeBusca);
 
     for (int i = 0; i < numContatos; i++){
         if(strcmp(contatos[i].nome, nomeBusca) == 0){
@@ -106,20 +106,22 @@ void removerContato(){
                 contatos[j] = contatos[j + 1];
             }
             numContatos--;
-            salvarContatos;
+            salvarContatos();
             printf("contato removido\n");
             return;
         }
     }
+
+    printf("Contato nao encontrado.\n");
 }
 
 void atualizarContato(){
     char nomeBusca[TAM_NOME];
     printf("Digite o nome do contato para atualizar: ");
-    scanf("%[^\n]s", nomeBusca);
+    scanf("%s", nomeBusca);
 
     for (int i = 0; i < numContatos; i++){
-        if(strcmp(contatos[i].nome, nomeBusca) == 0){
+        if (strcmp(contatos[i].nome, nomeBusca) == 0){
             printf("Digite o novo telefone: ");
             scanf("%s", contatos[i].telefone);
             printf("digite o novo email:");
@@ -133,19 +135,28 @@ void atualizarContato(){
     printf("Contato nao encontrado.\n");
 }
 
+void imprimirCabecalho() {
+    printf("*****************************\n");
+    printf("*      Lista de Contatos    *\n");
+    printf("*****************************\n\n");
+}
+
 int main(){
+
+    imprimirCabecalho();
+
     carregarContatos();
 
     int opcao;
 
     do{
-        printf("1. Adicionar contato\n");
-        printf("2. listar contatos\n");
-        printf("3. buscar contatos\n");
-        printf("4. remover contato\n");
-        printf("5. atualizar contatos\n");
-        printf("0. sair\n");
-        printf("Escolaha uma opçao:");
+        printf("1. Adicionar Contato\n");
+        printf("2. Listar contatos\n");
+        printf("3. Buscar contatos\n");
+        printf("4. Remover contatos\n");
+        printf("5. Atualizar contatos\n");
+        printf("0. Sair\n");
+        printf("Escolha uma alternativa:");
         scanf("%d", &opcao);
 
         switch (opcao){
